@@ -1,0 +1,106 @@
+https://www.youtube.com/watch?v=OAxaoThh9aQ
+https://www.youtube.com/watch?v=CHrMdUcX07c
+https://www.youtube.com/watch?v=Lzu4BOitXPg
+https://www.youtube.com/watch?v=YwpkSl9oeG8
+
+https://www.youtube.com/watch?v=UrGe6-E2zjY
+
+Q W E R T tuşları sol üstteki buttonlarda geçiş için
+
+http://kenney.nl/assets
+http://kenney.nl/assets
+siteden 2D den jumper pack i indiriyoruz.
+ayrıca
+Tappy Plane arattırıp bulun indiriyorum.
+
+zipli dosyaları açıyoruz. içinde yalnızca Spritesheet klasörünü kullanacağız.
+
+yeni proje oluştur. 2d yi seç. eğer proje açıldığında gezegenimsi gibiyse olmamıştır. Tekrar proje oluştur.
+
+
+File menusunden Build Settings android olarak seçip switch Platform yapabiliriz.
+
+Yukarıda indirdiğimiz dosyaları(Spritesheet olanları) Sol alttaki assets in altına images diye bir klasör oluşturup atalım.
+
+Spritesheet resimdeki tüm objelerin koordinatları xml dosyasının içinde mevcut.
+
+Resimleri parçalamak için Unity+ Asset Store dan XML Texture Atlas Slicer indirip kuralım ve projete import edelim.
+
+Asset + Slicer Sprite Using XML tıklıyouz. resminizi seçip açılan pencerede
+slice ye yıklıyoruz. Eğer başardıysa resmin sağında play tuşu gibi bir icon
+çıkacak ona basınca parçalanmış olarak görülür. ARtık hepsini tek tek tutup sahneye sürükleyerek kullanabiliriz.
+
+
+Oyunu dik ekran yapacağız. Game sekmesinden portrate lanscape yapabiliriz. 16:10 yazan Display1 in yanında.
+
+Yine Game sekmesinden freeAcpect den küçük + ya basıp 1080x1920 ekliyoruz.
+
+Main Kameranın olduğu pencerede boş biryere sağ tıklayıp Create Empty ile oyun seti oluşturabiliriz. 
+Oyunun levelları gibi düşün. Herşeyi içinde olacak düzen için iyi. F2 ile adını değiştirebiliriz.
+Main Cameraya tıklayıp Inspector penceresinden background rengini değiştirebilirsin.
+
+Uluşturduğumuz imajları inspector penceresinden 90 derece dikebiliriz. Ctrl+C  ile kopyalayıp karşı tarafına Ctrl + V ile -90 yapıp aynısından oluşturabiliriz.
+
+Animasyon için birbirine benzer imajları CTRL + mouse sol click ile tek tek seçip Hierarchy penceresine sürükleyip önceden Asset klasöründe oluşturduğum
+animasyonlar klasörüne kaydedebilirim. uzantısı .anim olacak. oyun ekranına koyduğumda play yaptığımda animasyonu izleyebilirim.
+
+Seçtiğim Engelleri ve kenarlara çarptığında yanacak yada puan kaybeceği için bu objeleri seçip Add Component ile Polygon Collider 2D eklemeliyiz. 
+Oyun karakterimizede seçip add component diyip circle Collider 2D ekleyip boyutunu ayarlamalıyım.
+Inspector den edit Collider ile boyutunu ayarlayabiliriz.
+
+Eklediğim engelin platformun arkasına geçmesi için Inspector penceresinden Order In Layer değerini -1 yap.
+
+OYUN DÖNGÜSÜ ve OBJECT POOLING
+set1 e tıkladım CTRL +D ile bir tane daha aynı setten oluşturdum.
+Unityde bir objeyi kod ile oluşturup silmek ciddi performans kayıplarına yol açar.
+
+Assette yeni bir klasör oluşturuyoruz. Adı Scripts olsun. içine create new script ile c# scripti ekledik. ADı GamaManager dedik ve
+bu scripti Game objesi seçili iken Inspector penceresine sürüklüyoruz.
+
+Hierarchy de oyun döngüsünü oluşturmak için create Empty ile Game isimli bir klasör oluşturalım.
+
+Edit ana menusunden Project Settings + Time  Buradan fps yi işlemciye göre sabitleyebiliriz.
+
+Hierarchy penceresinde create empty ile Aktif SEtler ve Pasif Setler isimki 2 adet obje oluştur.
+Set1 imi Aktif setin içine atacağım. CTRL +D ile yeni set oluşturup onuda aktif sete atacağım.
+Yeni seti sürüklerken doğru şekilde yapışması için sürüklerken ctrl + V
+
+Projemizdeki eklediklerimiz hepsi birer objedir. Bunları resim olarak saklamak için Asset içinde Prefabs (Prefabrik) 
+klasörü olştur. Hierarchy penceresinde oluşturduğum objeleri Prefabs klasörüne sürüklersem obje artık dosya olarak saklanacaktır.
+Sonra buradan oluşan prefab ı oluşturabilirim.
+
+Pasif Setler klasörüne ctrl D ile yeni bir set olşturalım ve tutup kameranın sağında boş alana sürükleyip tekrar ctrl d ile 10 tane oluşturup isimlerini değiştir.
+
+scriptimize public Transform aktifSetler, pasifSetler; ekledik. ve Game objesine tıklayıp Aktifleri Inspector deki AktifSetlere
+Pasifleride PasifSEtlere sürükle bırak.
+
+Scriptin Start metoduna aktifSetler.GetChild(0); 0 dediği Set1 imiz.
+
+Aktif ve pasif setlerin içindeki elemanların x pozisyonlarını 0 yap.
+
+Karakteri seçip Rigidbody 2d ekle. ve 3 position kutusunuda doldur. Bu oyuna ciddi bir 
+performans katacak. Rigidbody 2D aynı zamanda karaktere bir ağırlık ekler.
+Gravity Scale parametresini 0 yaparsak aşağı ağırlık ortadan kalkar.
+
+KArakteri seçip Add Component + Ara Character Control + newScript + C# + Rename + add
+
+Obje seçili iken V ye basılı tutarsan yakalama çalışıyor.
+
+dikenleri new create empty ile dikenler isimli klasöre atakım.
+dikenlerin arasından geçtiğimi anlamak için Dikenler klasörüne sağ click + 2D Object + SpriteMask adı gecis olsun.
+gecise tıklayıp + add component + box collider ekleyelim + üst ve alt boyunu uzatalım ve IsTrigger kutusunu boşaltalım.
+(yoksa uçak buradan geçmez :))
+
+
+Engele tag vermek için herhangi bir engele tıkladım. Inspector penceresinden Tag tıklatım.+Add Tag+ Artıya bastım+ ismini Engel koydum + Save tıkladım
+Bu tagı diğerlerinede koymak için hepsini ctrl sol click ile seçtim ve Inspector penceresinde Engel tagını seçiyorum.
+
+
+===Panel Oluşturmak( Puanlarımızı felan göstermek için)===
+Hierarchy de boş bir yere sağ click UI den + Canvas
+Render modunu Camera yap, UIScale Modu Scale with screen size yap.
+Bu sefer oluşturduğumuz canvas seçili ilen yine sağ click UI den + Panel
+Anchor unu tam ortadan olanı seç ve genişliğini 300 yap
+
+48:15
+

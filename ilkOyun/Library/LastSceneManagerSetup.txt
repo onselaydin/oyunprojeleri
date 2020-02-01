@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Sahneler/OyunSahnesi.unity
+  isLoaded: 1
+  isActive: 1
